@@ -1,5 +1,7 @@
 # Go Dependency Injection Container
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/apoprotsky/gdic)](https://goreportcard.com/report/github.com/apoprotsky/gdic)
+
 `gdic` library implements `Dependency Injection Container` pattern also known as `Service Container`.
 It creates instances of objects, resolving their dependencies using simple API.
 
@@ -12,7 +14,7 @@ package db
 
 type Service struct {}
 
-func (svc *Service) New(data string) int {...}
+func (svc *Service) New(data string) int {/*...*/}
 
 func New() *Service {
     return &Service{}
@@ -34,7 +36,7 @@ type Service struct {
 
 func (svc *Service) Get(/*...*/) *Account {
     var account Account{}
-    var accountData = svc.dbService.Find(...)
+    var accountData = svc.dbService.Find(/*...*/)
     /*...*/
     return &account
 }
