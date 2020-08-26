@@ -4,7 +4,7 @@ import (
 	"reflect"
 )
 
-// RegisterProvider register function than provides functionality to create instance of specified type
+// RegisterProvider registers function that provides ability to create instance of specified type
 func RegisterProvider(provider interface{}) error {
 	providerType := reflect.TypeOf(provider)
 	if providerType.Kind() != reflect.Func {

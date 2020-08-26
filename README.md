@@ -35,10 +35,9 @@ type Service struct {
 }
 
 func (svc *Service) Get(/*...*/) *Account {
-    var account Account{}
-    var accountData = svc.dbService.Find(/*...*/)
+    var data = svc.dbService.Find(/*...*/)
     /*...*/
-    return &account
+    return &Account{data: data}
 }
 
 func New(dbService *db.Service) *Service {
@@ -62,7 +61,7 @@ func main() {
     gdic.RegisterProvider(db.New)
     gdic.RegisterProvider(accounts.New)
     // Use GDIC
-    var accountsService = gdic.Get((*users.Service)(nil)).(*users.Service)
+    var accountsService = gdic.GetOrPanic((*users.Service)(nil)).(*users.Service)
     var account = accountsService.Get(/*...*/)
     /*...*/
 }

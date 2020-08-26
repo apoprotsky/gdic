@@ -4,7 +4,7 @@ import (
 	"reflect"
 )
 
-// Create used to create new instance of specified type
+// Create creates new instance of specified type
 func Create(i interface{}) (interface{}, error) {
 	var svc = getService(i)
 	if svc == nil {
@@ -14,4 +14,13 @@ func Create(i interface{}) (interface{}, error) {
 		svc.instance = nil
 	}
 	return svc.getInstance()
+}
+
+// CreateOrPanic creates new instance of specified type or calls panic on error
+func CreateOrPanic(i interface{}) interface{} {
+	if instance, err := Create(i); err == nil {
+		return instance
+	} else {
+		panic(err.Error())
+	}
 }
