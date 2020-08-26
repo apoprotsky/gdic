@@ -26,3 +26,10 @@ func RegisterProvider(provider interface{}) error {
 	}
 	return nil
 }
+
+// RegisterProviderOrPanic registers function that provides ability to create instance of specified type or call panic
+func RegisterProviderOrPanic(provider interface{}) {
+	if err := RegisterProvider(provider); err != nil {
+		panic(err)
+	}
+}

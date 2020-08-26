@@ -58,8 +58,8 @@ import (
 
 func main() {
     // Init GDIC
-    gdic.RegisterProvider(db.New)
-    gdic.RegisterProvider(accounts.New)
+    gdic.RegisterProviderOrPanic(db.New)
+    gdic.RegisterProviderOrPanic(accounts.New)
     // Use GDIC
     var accountsService = gdic.GetOrPanic((*users.Service)(nil)).(*users.Service)
     var account = accountsService.Get(/*...*/)

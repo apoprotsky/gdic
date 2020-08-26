@@ -21,6 +21,6 @@ func CreateOrPanic(i interface{}) interface{} {
 	if instance, err := Create(i); err == nil {
 		return instance
 	} else {
-		panic(err.Error())
+		panic(err)
 	}
 }
