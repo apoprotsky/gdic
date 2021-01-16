@@ -6,7 +6,7 @@ type Service struct {
 }
 
 // InitService initialize service
-func (svc *Service) InitService() {
+func (svc *Service) Init() {
 	svc.Name = "database"
 }
 
