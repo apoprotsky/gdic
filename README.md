@@ -5,6 +5,9 @@
 `gservices` library implements `Service Container` pattern.
 It creates instances of objects, resolving their dependencies using simple API.
 
+To resolve services dependencies simply add a public Pointer type field in your service structure or
+declare method `Init` which arguments is pointers to other services.
+
 ## Usage example
 
 Declaring `db` package

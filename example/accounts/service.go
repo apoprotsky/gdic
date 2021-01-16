@@ -12,12 +12,14 @@ type Account struct {
 }
 
 // Service structure
+// Public fields of service structure can be initialized without Init method
 type Service struct {
 	databaseService *database.Service
 }
 
-// InitService initializes service
-func (svc *Service) InitService(databaseService *database.Service) {
+// Init initializes service
+// Method called by gservices when instance of service is created
+func (svc *Service) Init(databaseService *database.Service) {
 	svc.databaseService = databaseService
 }
 

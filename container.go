@@ -4,6 +4,8 @@ import (
 	"reflect"
 )
 
+const initMethodName = "Init"
+
 // Container struct
 type Container struct {
 	services map[interface{}]interface{}
@@ -45,7 +47,7 @@ func (c *Container) Create(i interface{}) interface{} {
 		val := c.Get(reflect.Zero(fieldType).Interface())
 		f.Set(reflect.ValueOf(val))
 	}
-	method, ok := svc.Type().MethodByName("InitService")
+	method, ok := svc.Type().MethodByName(initMethodName)
 	if ok {
 		argumentsCount := method.Type.NumIn()
 		arguments := make([]reflect.Value, argumentsCount-1)
