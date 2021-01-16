@@ -12,11 +12,10 @@ type Container struct {
 // Get returns existing or creates new instance of specified type
 func (c *Container) Get(i interface{}) interface{} {
 	service := c.services[reflect.TypeOf(i)]
-	if service != nil {
-		return service
+	if service == nil {
+		service = c.Create(i)
+		c.services[reflect.TypeOf(i)] = service
 	}
-	service = c.Create(i)
-	c.services[reflect.TypeOf(i)] = service
 	return service
 }
 
@@ -31,7 +30,6 @@ func (c *Container) Create(i interface{}) interface{} {
 	svc := reflect.New(instanceType)
 	for i := 0; i < instanceType.NumField(); i++ {
 		field := instanceType.Field(i)
-		//fmt.Println(field.Tag.Get("service"))
 		fieldType := field.Type
 		if fieldType.Kind() != reflect.Ptr {
 			continue
