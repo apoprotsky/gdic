@@ -1,8 +1,8 @@
 # Go Dependency Injection Container
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/apoprotsky/gdic)](https://goreportcard.com/report/github.com/apoprotsky/gdic)
+[![Go Report Card](https://goreportcard.com/badge/github.com/apoprotsky/gservices)](https://goreportcard.com/report/github.com/apoprotsky/gservices)
 
-`gdic` library implements `Dependency Injection Container` pattern also known as `Service Container`.
+`gservices` library implements `Dependency Injection Container` pattern also known as `Service Container`.
 It creates instances of objects, resolving their dependencies using simple API.
 
 ## Usage example
@@ -13,12 +13,6 @@ Declaring `db` package
 package db
 
 type Service struct {}
-
-func (svc *Service) New(data string) int {/*...*/}
-
-func New() *Service {
-    return &Service{}
-}
 ```
 
 Declaring `accounts` package
@@ -39,10 +33,6 @@ func (svc *Service) Get(/*...*/) *Account {
     /*...*/
     return &Account{data: data}
 }
-
-func New(dbService *db.Service) *Service {
-    return &Service{dbService: dbService}
-}
 ```
 
 Main application package
@@ -52,17 +42,14 @@ package main
 
 import (
     "app/accounts"
-    "app/db"
-    "github.com/apoprotsky/gdic"
+    "github.com/apoprotsky/gservices"
 )
 
 func main() {
-    // Init GDIC
-    gdic.RegisterProviderOrPanic(db.New)
-    gdic.RegisterProviderOrPanic(accounts.New)
-    // Use GDIC
-    var accountsService = gdic.GetOrPanic((*users.Service)(nil)).(*users.Service)
-    var account = accountsService.Get(/*...*/)
+    accountsService := gservices.GetOrPanic((*accounts.Service)(nil)).(*accounts.Service)
+    account := accountsService.Get(/*...*/)
     /*...*/
 }
 ```
+
+See example directory for more information.

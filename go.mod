@@ -1,3 +1,3 @@
-module github.com/apoprotsky/gdic
+module github.com/apoprotsky/gservices
 
 go 1.15
