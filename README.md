@@ -25,11 +25,11 @@ import "app/db"
 type Account struct {/*...*/}
 
 type Service struct {
-    dbService *db.Service
+    DBService *db.Service
 }
 
 func (svc *Service) Get(/*...*/) *Account {
-    var data = svc.dbService.Find(/*...*/)
+    var data = svc.DBService.Find(/*...*/)
     /*...*/
     return &Account{data: data}
 }
@@ -46,7 +46,7 @@ import (
 )
 
 func main() {
-    accountsService := gservices.GetOrPanic((*accounts.Service)(nil)).(*accounts.Service)
+    accountsService := gservices.Get((*accounts.Service)(nil)).(*accounts.Service)
     account := accountsService.Get(/*...*/)
     /*...*/
 }
