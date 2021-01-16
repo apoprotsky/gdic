@@ -1,8 +1,8 @@
-# Go Dependency Injection Container
+# Go Service Container
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/apoprotsky/gservices)](https://goreportcard.com/report/github.com/apoprotsky/gservices)
 
-`gservices` library implements `Dependency Injection Container` pattern also known as `Service Container`.
+`gservices` library implements `Service Container` pattern.
 It creates instances of objects, resolving their dependencies using simple API.
 
 ## Usage example
